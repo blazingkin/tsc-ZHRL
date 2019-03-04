@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for dist/src/ZHRL.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">dist/src</a> ZHRL.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>42/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">70% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>21/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.78% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>42/56</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var ZHRL;
+(function (ZHRL) {
+    // If Contains
+    // - a condition
+    // - a body expression
+    // - an else expression
+    class IfC {
+<span class="fstat-no" title="function not covered" >        co</span>nstructor(cond, bo, els) {
+<span class="cstat-no" title="statement not covered" >            this.condition = cond;</span>
+<span class="cstat-no" title="statement not covered" >            this.body = bo;</span>
+<span class="cstat-no" title="statement not covered" >            this.else = els;</span>
+        }
+    }
+    ZHRL.IfC = IfC;
+    // An Id is a wrapped symbol
+    class IdC {
+        constructor(sym) {
+            this.symbol = sym;
+        }
+    }
+    ZHRL.IdC = IdC;
+    // A lambda expression has
+    // - a list of parameters to which arguments should be bound
+    // - a body
+    class LamC {
+        constructor(par, bo) {
+            this.parameters = par;
+            this.body = bo;
+        }
+    }
+    ZHRL.LamC = LamC;
+    // Function application has
+    // - an operator (the function to be called)
+    // - a list of arguments to bind
+    class AppC {
+        constructor(op, args) {
+            this.operator = op;
+            this.arguments = args;
+        }
+    }
+    ZHRL.AppC = AppC;
+    class CloV {
+<span class="fstat-no" title="function not covered" >        co</span>nstructor(environ, lam) {
+<span class="cstat-no" title="statement not covered" >            this.env = environ;</span>
+<span class="cstat-no" title="statement not covered" >            this.args = lam.parameters;</span>
+<span class="cstat-no" title="statement not covered" >            this.body = lam.body;</span>
+        }
+    }
+    ZHRL.CloV = CloV;
+    ZHRL.input = [["lam", ["x", "y"], ["+", "x", "y"]], 3, 4];
+    function isSexpArray(expr) {
+        return typeof expr === "object" &amp;&amp; expr.length !== undefined;
+    }
+    ZHRL.isSexpArray = isSexpArray;
+    function assertStringArray(expr) {
+        var result = [];
+        for (var i = 0; i &lt; expr.length; i++) {
+            var entry = expr[i];
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!(typeof entry === "string")) {
+<span class="cstat-no" title="statement not covered" >                throw "ZHRL: expected " + entry + " to be an identifier";</span>
+            }
+            result.push(entry);
+        }
+        return result;
+    }
+    ZHRL.assertStringArray = assertStringArray;
+    function parse(expr) {
+        if (isSexpArray(expr)) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (expr.length === 0) {
+<span class="cstat-no" title="statement not covered" >                throw "ZHRL: Empty list is not a valid ZHRL expression";</span>
+            }
+            // Try to parse the reserved forms
+            var first = expr[0];
+            if (typeof first === "string") {
+                // If it is a string, there is a chance it is a lambda, if, or var expression
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (first === "if") {
+<span class="cstat-no" title="statement not covered" >                    if (expr.length != 4) {</span>
+<span class="cstat-no" title="statement not covered" >                        throw "ZHRL: If statment expects a condition, main block, and else block";</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    return new IfC(parse(expr[1]), parse(expr[2]), parse(expr[3]));</span>
+                }
+                else if (first === "lam") {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (expr.length != 3) {
+<span class="cstat-no" title="statement not covered" >                        throw "ZHRL: Lamda expects a list of symbols and a body";</span>
+                    }
+                    var args = expr[1];
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (isSexpArray(args)) {
+                        return new LamC(assertStringArray(args), parse(expr[2]));
+                    }
+<span class="cstat-no" title="statement not covered" >                    throw "ZHRL: Lambda expects the second part to be a list of arguments";</span>
+                }
+                else <span class="missing-if-branch" title="if path not taken" >I</span>if (first == "var") {
+                    // stub, handle ths later
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            }
+            return new AppC(parse(first), expr.slice(1).map(parse));
+        }
+        // handle all of the primitives
+        if (typeof expr === "string") {
+            return new IdC(expr);
+        }
+        else if (typeof expr == "boolean") {
+            return expr;
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof expr == "number") {
+            return expr;
+        }
+    }
+    ZHRL.parse = parse;
+    console.log(parse(ZHRL.input));
+})(ZHRL = exports.ZHRL || (exports.ZHRL = {}));
+//# sourceMappingURL=ZHRL.js.map</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 03 2019 19:52:18 GMT-0800 (Pacific Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
