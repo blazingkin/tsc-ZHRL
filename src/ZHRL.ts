@@ -13,6 +13,9 @@ export namespace ZHRL {
             this.else = els;
         }
     }
+    export function isIfC(arg : any): arg is IfC {
+        return typeof arg === "object" && arg.constructor.name === "IfC";
+    };
 
     // An Id is a wrapped symbol
     export class IdC {
@@ -21,6 +24,9 @@ export namespace ZHRL {
             this.symbol = sym;
         }
     }
+    export function isIdC(arg : any): arg is IdC {
+        return typeof arg === "object" && arg.constructor.name === "IdC";
+    };
 
     // A lambda expression has
     // - a list of parameters to which arguments should be bound
@@ -33,6 +39,9 @@ export namespace ZHRL {
             this.body = bo;
         }
     }
+    export function isLamC(arg : any): arg is LamC {
+        return typeof arg === "object" && arg.constructor.name === "LamC";
+    };
 
     // Function application has
     // - an operator (the function to be called)
@@ -45,10 +54,15 @@ export namespace ZHRL {
             this.arguments = args;
         }
     }
+    export function isAppC(arg : any): arg is AppC {
+        return typeof arg === "object" && arg.constructor.name === "AppC";
+    };
 
-    export type ExprC = Value | IfC | IdC | LamC | AppC
+    export type ExprC = number | string | boolean | IfC | IdC | LamC | AppC
 
     export type Env = Map<String, Value>
+
+    export var emptyEnv = new Map<String, Value>();
 
     export class CloV {
         env : Env;
@@ -80,7 +94,7 @@ export namespace ZHRL {
         for (var i = 0; i < expr.length; i++) {
             var entry : Sexp = expr[i];
             if (!(typeof entry === "string")) {
-                throw "ZHRL: expected " + entry + " to be an identifier";
+                throw new Error("ZHRL: expected " + entry + " to be an identifier");
             }
             result.push(entry);
         }
@@ -90,7 +104,7 @@ export namespace ZHRL {
     export function parse(expr : Sexp) : ExprC {
         if (isSexpArray(expr)) {
             if (expr.length === 0) {
-                throw "ZHRL: Empty list is not a valid ZHRL expression";
+                throw new Error("ZHRL: Empty list is not a valid ZHRL expression");
             }
 
             // Try to parse the reserved forms
@@ -99,7 +113,7 @@ export namespace ZHRL {
                 // If it is a string, there is a chance it is a lambda, if, or var expression
                 if (first === "if") {
                     if (expr.length != 4) {
-                        throw "ZHRL: If statment expects a condition, main block, and else block";
+                        throw new Error("ZHRL: If statment expects a condition, main block, and else block");
                     }
                     return new IfC(parse(expr[1]), parse(expr[2]), parse(expr[3]));
                 } else if (first === "lam") {
@@ -110,7 +124,7 @@ export namespace ZHRL {
                     if (isSexpArray(args)) {
                         return new LamC(assertStringArray(args), parse(expr[2]));
                     }
-                    throw "ZHRL: Lambda expects the second part to be a list of arguments";
+                    throw new Error("ZHRL: Lambda expects the second part to be a list of arguments");
                 } else if (first == "var") {
                     // stub, handle ths later
                     return false;
@@ -128,5 +142,31 @@ export namespace ZHRL {
         }
     }
 
-    console.log(parse(input));
+    export function interp(node : ExprC, env : Env) : Value {
+        
+        // Handle the primitives
+        if (typeof node === "boolean"){
+            return node;
+        } else if (typeof node === "number") {
+            return node;
+        } else if (isIdC(node)) {
+            if (env.has(node.symbol)) {
+                return env.get(node.symbol);
+            } else {
+                throw new Error("ZHRL: Unbound identifier " + node.symbol);
+            }
+        } else if (isIfC(node)) {
+            var conditionEvaluation = interp(node.condition, env);
+            if (conditionEvaluation === true) {
+                return interp(node.body, env);
+            } else if (conditionEvaluation === false) {
+                return interp(node.else, env);
+            } else {
+                // If they returned the wrong type in the condition
+                throw new Error("ZHRL: Wrong type returned in if condition " + conditionEvaluation);
+            }
+        }
+        return ""
+    }
+
 }
