@@ -10,4 +10,4 @@ To run tests, run `npm test`
 
 To run the language, run `npm run-script start`
 
-(Alex is at 2.75 hours)
+(Alex is at 3.25 hours)

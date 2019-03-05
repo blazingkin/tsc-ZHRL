@@ -33,3 +33,8 @@ test('interp IdC should return the correct bound value, or throw error', () => {
     expect(source.ZHRL.interp(new IdC("b"), map)).toEqual(false);
     expect(() => {source.ZHRL.interp(new IdC("c"), map)}).toThrow("ZHRL: Unbound identifier c");
 })
+
+test('very simple function application should work', () => {
+    var prog = [["lam", ["x"], "x"], 30];
+    expect(source.ZHRL.topInterp(prog)).toEqual(30);
+});
