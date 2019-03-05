@@ -180,6 +180,10 @@ export namespace ZHRL {
                     }
                     throw new Error("ZHRL: Lambda expects the second part to be a list of arguments");
                 } else if (first == "var") {
+                    // Natalie 
+                    var secound : Sexp = expr[1];
+                    var third : Sexp = expr[2];
+                    if()
                     // stub, handle ths later
                     return false;
                 }
