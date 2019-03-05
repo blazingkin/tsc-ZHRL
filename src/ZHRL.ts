@@ -183,7 +183,12 @@ export namespace ZHRL {
                     // Natalie 
                     var secound : Sexp = expr[1];
                     var third : Sexp = expr[2];
-                    if()
+                    if(secound == third){
+                        throw "ZHRL: Duplicate Variable";
+                    }
+                    else if {
+
+                    }
                     // stub, handle ths later
                     return false;
                 }
