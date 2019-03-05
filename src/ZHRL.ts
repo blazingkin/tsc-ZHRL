@@ -100,12 +100,69 @@ export namespace ZHRL {
         }
     }
 
+    export class Builtin {
+        operator: BuiltinFunc
+        constructor(func : BuiltinFunc){
+            this.operator = func;
+        }
+    }
+    export function isBuiltin(val : any) : val is Builtin {
+        return val instanceof Builtin;
+    }
+
     export type ExprC = number | string | boolean | IfC | IdC | LamC | AppC
 
     export type Env = Map<String, Value>
 
     export var emptyEnv = new Map<String, Value>();
     export var globalEnv = new Map<String, Value>();
+    globalEnv.set("+", new Builtin((args : Value[]) : Value => {
+        if (args.length != 2) {
+            throw new Error("ZHRL: + expects two arguments");
+        }
+        var first = args[0];
+        var second = args[1];
+        if (typeof first !== "number" || typeof second !== "number") {
+            throw new Error("ZHRL: + expects two numbers");
+        }
+        return first + second;
+    }));
+    globalEnv.set("-", new Builtin((args : Value[]) : Value => {
+        if (args.length != 2) {
+            throw new Error("ZHRL: - expects two arguments");
+        }
+        var first = args[0];
+        var second = args[1];
+        if (typeof first !== "number" || typeof second !== "number") {
+            throw new Error("ZHRL: - expects two numbers");
+        }
+        return first - second;
+    }));
+    globalEnv.set("*", new Builtin((args : Value[]) : Value => {
+        if (args.length != 2) {
+            throw new Error("ZHRL: * expects two arguments");
+        }
+        var first = args[0];
+        var second = args[1];
+        if (typeof first !== "number" || typeof second !== "number") {
+            throw new Error("ZHRL: * expects two numbers");
+        }
+        return first * second;
+    }));
+    globalEnv.set("/", new Builtin((args : Value[]) : Value => {
+        if (args.length != 2) {
+            throw new Error("ZHRL: / expects two arguments");
+        }
+        var first = args[0];
+        var second = args[1];
+        if (typeof first !== "number" || typeof second !== "number") {
+            throw new Error("ZHRL: / expects two numbers");
+        }
+        if (second === 0){
+            throw new Error("ZHRL: / cannot take 0 as a denominator")
+        }
+        return first / second;
+    }));
 
     export function copyEnv(env : Env) : Env {
         return new Map(env);
@@ -127,7 +184,7 @@ export namespace ZHRL {
 
 
 
-    export type Builtin = (args : Value[]) => Value
+    export type BuiltinFunc = (args : Value[]) => Value
     export type Value = number | string | boolean | Builtin | CloV
 
     export interface SexpArray extends Array<Sexp> {}
@@ -207,7 +264,6 @@ export namespace ZHRL {
 
     // Interp - handles interp on primitives and dispatches to nodes
     export function interp(node : ExprC, env : Env) : Value {
-        
         // Handle the primitives
         if (typeof node === "boolean"){
             return node;
@@ -217,7 +273,6 @@ export namespace ZHRL {
             // Dispatch to the node object if it is not a primitive
             return node.interp(env);
         }
-        return ""
     }
 
     export function topInterp(input : Sexp) : Value {
