@@ -178,6 +178,21 @@ export namespace ZHRL {
             return false;
         }
     }));
+    globalEnv.set("equal?", new Builtin((args : Value[]) : Value => {
+        if(args.length != 2){
+            throw new Error("ZHRL: equal? expects two arguments");
+        }
+        var first = args[0];
+        var second = args[1];
+        if(typeof first!== "number" || typeof second !== "number"){
+            throw new Error("ZHRL: equal? expects two numbers");
+        }
+        if(first === second){
+            return true;
+        } else {
+            return false;
+        }
+    }));
     globalEnv.set("true", new Builtin((args : Value[]) : Value => {
         return true;
     }));

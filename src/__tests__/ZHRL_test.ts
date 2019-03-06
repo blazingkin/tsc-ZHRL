@@ -71,6 +71,14 @@ test('test less than equal builtin', () => {
     expect(lte.operator([2, 3])).toEqual(true);
 });
 
+test('test less than equal builtin', () => {
+    var eq = source.ZHRL.globalEnv.get("equal?");
+    if (!source.ZHRL.isBuiltin(eq)) {
+        throw new Error("equal? should be a builtin");
+    }
+    expect(eq.operator([2, 2])).toEqual(true);
+});
+
 test('test true builtin', () => {
     var tru = source.ZHRL.globalEnv.get("true");
     if (!source.ZHRL.isBuiltin(tru)) {
