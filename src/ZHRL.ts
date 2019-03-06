@@ -178,27 +178,6 @@ export namespace ZHRL {
             return false;
         }
     }));
-    globalEnv.set("equal?", new Builtin((args : Value[]) : Value => {
-        if(args.length != 2){
-            throw new Error("ZHRL: equal? expects two arguments");
-        }
-        var first = args[0];
-        var second = args[1];
-        if(typeof first!== "number" || typeof second !== "number"){
-            throw new Error("ZHRL: equal? expects two numbers");
-        }
-        if(first === second){
-            return true;
-        } else {
-            return false;
-        }
-    }));
-    globalEnv.set("true", new Builtin((args : Value[]) : Value => {
-        return true;
-    }));
-    globalEnv.set("false", new Builtin((args : Value[]) : Value => {
-        return false;
-    }));
 
     export function copyEnv(env : Env) : Env {
         return new Map(env);
@@ -274,13 +253,15 @@ export namespace ZHRL {
                     throw new Error("ZHRL: Lambda expects the second part to be a list of arguments");
                 } else if (first == "var") {
                     // Natalie 
-                    var secound : Sexp = expr[1];
-                    var third : Sexp = expr[2];
-                    if(secound == third){
+                    var uniEntries = expr.filter(function(elem, index, self) {
+                        return index === self.indexOf(elem);
+                    })
+
+                    if(uniEntries != expr.length){
                         throw "ZHRL: Duplicate Variable";
                     }
                     else if {
-
+                        
                     }
                     // stub, handle ths later
                     return false;
