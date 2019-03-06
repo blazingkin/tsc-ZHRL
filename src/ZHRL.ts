@@ -281,7 +281,7 @@ export namespace ZHRL {
     }
 
     export function topInterp(input : Sexp) : Value {
-        return interp(parse(input), globalEnv);
+        return serialize(interp(parse(input), globalEnv));
     }
 
 }

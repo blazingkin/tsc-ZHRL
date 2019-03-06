@@ -48,7 +48,7 @@ test('function application with not enough variables should fail', () => {
 
 test('very simple function application should work', () => {
     var prog = [["lam", ["x"], "x"], 30];
-    expect(source.ZHRL.topInterp(prog)).toEqual(30);
+    expect(source.ZHRL.topInterp(prog)).toEqual("30");
 });
 
 test('serialize should return string version of ZHRL value', () => {
