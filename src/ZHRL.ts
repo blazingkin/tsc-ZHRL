@@ -274,9 +274,18 @@ export namespace ZHRL {
                     throw new Error("ZHRL: Lambda expects the second part to be a list of arguments");
                 } else if (first == "var") {
                     // Natalie 
-                    var uniEntries = expr.filter(function(elem, index, self) {
-                        return index === self.indexOf(elem);
-                    })
+                    // to run tsc
+
+                    var uniEntries = expr.length;
+                    
+                    for (var i = 0; i < expr.length; i++) {
+                        for (var j = 0; j < expr.length; j++) {
+                            if(expr[i] == expr[j]){
+                                uniEntries--;
+                            }
+                        }
+                    }
+                       
 
                     if(uniEntries != expr.length){
                         throw "ZHRL: Duplicate Variable";
