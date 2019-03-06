@@ -293,11 +293,11 @@ export namespace ZHRL {
     }
 
     //Serialize returns string version of ZHRL value
-    export function serialize(input : Sexp) : String {
+    export function serialize(input : Sexp) : string {
         input.toString();
     }
 
-    export function topInterp(input : Sexp) : Value {
+    export function topInterp(input : Sexp) : string {
         return serialize(interp(parse(input), globalEnv));
     }
 
