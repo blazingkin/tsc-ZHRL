@@ -301,7 +301,7 @@ export namespace ZHRL {
                         //[(AppC (LamC (cast v (Listof Symbol)) (parse body))
                             //(map parse (cast exp (Listof Sexp))))])]
                         else {
-                            return new AppC( new LamC( assertStringArray(expr[2]), (parse(expr.slice(2, expr.length)))), expr.slice(1).map(parse));
+                            return new AppC( new LamC( assertStringArray([expr[2]]), (parse(expr.slice(2, expr.length)))), expr.slice(1).map(parse));
                         }
                     }
                     // stub, handle ths later
