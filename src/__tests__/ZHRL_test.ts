@@ -52,7 +52,7 @@ test('very simple function application should work', () => {
 });
 
 test('serialize should return string version of ZHRL value', () => {
-    expect(source.ZHRL.serialize(1).toEqual("1");
+    expect(source.ZHRL.serialize(1).toEqual("1"));
 });
 
 test('test add builtin', () => {
