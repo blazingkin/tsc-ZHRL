@@ -12,6 +12,10 @@ test('lambda expression should be parse correctly', () => {
     expect(source.ZHRL.parse(["lam", ["x", "y"], "x"])).toEqual(new source.ZHRL.LamC(["x", "y"], new source.ZHRL.IdC("x")));
 })
 
+//test('var expression should be parse correctly', () => {
+    //expect(source.ZHRL.parse(["var", ["x", "y"], "x"])).toEqual(new source.ZHRL.LamC(["x", "y"], new source.ZHRL.IdC("x")));
+//})
+
 test('interp a literal should return that literal', () => {
     expect(source.ZHRL.interp(3, source.ZHRL.emptyEnv)).toEqual(3);
     expect(source.ZHRL.interp(false, source.ZHRL.emptyEnv)).toEqual(false);

@@ -277,29 +277,31 @@ export namespace ZHRL {
                     // to run tsc
 
                     var uniEntries = expr.length;
+                    var badArg = 0;
                     
-                    for (var i = 0; i < expr.length; i++) {
-                        for (var j = 0; j < expr.length; j++) {
+                    for (var i = 1; i < expr.length; i++) {
+                        for (var j = 1; j < expr.length; j++) {
                             if(expr[i] == expr[j]){
                                 uniEntries--;
                             }
                         }
+                        if(expr[i] == "if" || expr[i] == "var" || expr[i] == "==" 
+                            || expr[i] == "lam"){
+                                badArg++;
+                            }
                     }
-                       
 
                     if(uniEntries != expr.length){
                         throw "ZHRL: Duplicate Variable";
                     }
-                    else if {
-                        //[(ormap (lambda (s) (hash-has-key? badArgs s)) v)
-                           //(error 'parse: "ZHRL: Has Invaild Variable")]
-                        if (){
-
+                    else {
+                        if (badArg != 0){
+                            throw "ZHRL: Has Invaild Variable";
                         }
                         //[(AppC (LamC (cast v (Listof Symbol)) (parse body))
                             //(map parse (cast exp (Listof Sexp))))])]
-                        else if {
-
+                        else {
+                            return new AppC( new LamC( assertStringArray(expr[2]), (parse(expr.slice(2, expr.length)))), expr.slice(1).map(parse));
                         }
                     }
                     // stub, handle ths later
