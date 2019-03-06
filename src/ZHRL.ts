@@ -261,7 +261,12 @@ export namespace ZHRL {
                         throw "ZHRL: Duplicate Variable";
                     }
                     else if {
-                        
+                        if (){
+
+                        }
+                        else if {
+
+                        }
                     }
                     // stub, handle ths later
                     return false;
@@ -293,11 +298,11 @@ export namespace ZHRL {
     }
 
     //Serialize returns string version of ZHRL value
-    export function serialize(input : Sexp) : string {
+    export function serialize(input : Sexp) : String {
         input.toString();
     }
 
-    export function topInterp(input : Sexp) : string {
+    export function topInterp(input : Sexp) : Value {
         return serialize(interp(parse(input), globalEnv));
     }
 
