@@ -282,9 +282,13 @@ export namespace ZHRL {
                         throw "ZHRL: Duplicate Variable";
                     }
                     else if {
+                        //[(ormap (lambda (s) (hash-has-key? badArgs s)) v)
+                           //(error 'parse: "ZHRL: Has Invaild Variable")]
                         if (){
 
                         }
+                        //[(AppC (LamC (cast v (Listof Symbol)) (parse body))
+                            //(map parse (cast exp (Listof Sexp))))])]
                         else if {
 
                         }
