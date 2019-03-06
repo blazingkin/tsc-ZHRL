@@ -52,7 +52,7 @@ test('very simple function application should work', () => {
 });
 
 test('serialize should return string version of ZHRL value', () => {
-    expect(source.ZHRL.serialize(1).toEqual("1"));
+    expect(source.ZHRL.serialize(1)).toEqual("1");
 });
 
 test('test add builtin', () => {
@@ -84,7 +84,7 @@ test('test true builtin', () => {
     if (!source.ZHRL.isBuiltin(tru)) {
         throw new Error("true should be a builtin");
     }
-    expect(lte.operator(true)).toEqual(true);
+    expect(tru.operator([true])).toEqual(true);
 });
 
 test('test false builtin', () => {
@@ -92,7 +92,7 @@ test('test false builtin', () => {
     if (!source.ZHRL.isBuiltin(fals)) {
         throw new Error("false should be a builtin");
     }
-    expect(lte.operator(false)).toEqual(false);
+    expect(fals.operator([false])).toEqual(false);
 });
 
 test('test less than equal builtin again', () => {
