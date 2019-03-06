@@ -51,6 +51,10 @@ test('very simple function application should work', () => {
     expect(source.ZHRL.topInterp(prog)).toEqual(30);
 });
 
+test('serialize should return string version of ZHRL value', () => {
+    expect(source.ZHRL.serialize(1).toEqual("1");
+});
+
 test('test add builtin', () => {
     var add = source.ZHRL.globalEnv.get("+");
     if (!source.ZHRL.isBuiltin(add)) {
