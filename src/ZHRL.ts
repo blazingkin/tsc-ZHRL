@@ -178,6 +178,12 @@ export namespace ZHRL {
             return false;
         }
     }));
+    globalEnv.set("true", new Builtin((args : Value[]) : Value => {
+        return true;
+    }));
+    globalEnv.set("false", new Builtin((args : Value[]) : Value => {
+        return false;
+    }));
 
     export function copyEnv(env : Env) : Env {
         return new Map(env);
