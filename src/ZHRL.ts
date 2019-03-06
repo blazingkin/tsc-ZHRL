@@ -282,7 +282,12 @@ export namespace ZHRL {
                         throw "ZHRL: Duplicate Variable";
                     }
                     else if {
-                        
+                        if (){
+
+                        }
+                        else if {
+
+                        }
                     }
                     // stub, handle ths later
                     return false;
