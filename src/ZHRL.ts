@@ -83,10 +83,13 @@ export namespace ZHRL {
 
         interp(env : Env) : Value {
             var func = interp(this.operator, env);
+            var curriedInterp = (x : ExprC) => interp(x, env); 
             if (!isCloV(func)){
+                if (isBuiltin(func)) {
+                    return func.operator(this.arguments.map(curriedInterp));
+                }
                 throw new Error("ZHRL: Cannot execute a function that is not a closure. Got " + func + " instead");
             }
-            var curriedInterp = (x : ExprC) => interp(x, env); 
             var args = this.arguments.map(curriedInterp);
             if (args.length !== func.args.length) {
                 throw new Error("ZHRL: Function called with wrong arity");

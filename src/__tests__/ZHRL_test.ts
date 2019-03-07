@@ -111,3 +111,9 @@ test('test less than equal builtin again', () => {
     }
     expect(lte.operator([3, 2])).toEqual(false);
 });
+
+test('test comprehensive test of many parts', () => {
+    expect(source.ZHRL.topInterp(["var", ["a", "=", 3],
+                                         ["b", "=", 10],
+                                         ["*", "a", ["+", "b", 1]]])).toEqual("33");
+});
