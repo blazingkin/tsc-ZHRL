@@ -247,6 +247,35 @@ export namespace ZHRL {
         return result;
     }
 
+    export function allUnique(arr : any[]) : boolean {
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (i != j && arr[i] == arr[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    export function getBindingFromVar(expr : Sexp) : string {
+        if (!isSexpArray(expr) || expr.length != 3) {
+            throw new Error("ZHRL: Incorrect format for var");
+        }
+        var name = expr[0];
+        if (typeof name !== "string") {
+            throw new Error("ZHRL: Name of binding should be an identifier");
+        }
+        return name;
+    }
+
+    export function getExprFromVar(expr : Sexp) : Sexp {
+        if (!isSexpArray(expr) || expr.length != 3) {
+            throw new Error("ZHRL: Incorrect format for var");
+        }
+        return expr[2];
+    }
+
     // Parses a given "S-expression" into an ExprC tree
     export function parse(expr : Sexp) : ExprC {
         if (isSexpArray(expr)) {
@@ -276,33 +305,23 @@ export namespace ZHRL {
                     // Natalie 
                     // to run tsc
 
-                    var uniEntries = expr.length;
-                    var badArg = 0;
-                    
-                    for (var i = 1; i < expr.length; i++) {
-                        for (var j = 1; j < expr.length; j++) {
-                            if(expr[i] == expr[j]){
-                                uniEntries--;
-                            }
-                        }
-                        if(expr[i] == "if" || expr[i] == "var" || expr[i] == "==" 
-                            || expr[i] == "lam"){
-                                badArg++;
-                            }
-                    }
+                    var varExprs = expr.slice(1, -1); // slice off the var and the body
+                    var body = expr[expr.length - 1];
+                    var bindings = varExprs.map(getBindingFromVar);
+                    var exprs = varExprs.map(getExprFromVar);
 
-                    if(uniEntries != expr.length){
+                    if(!allUnique(bindings)){
                         throw "ZHRL: Duplicate Variable";
                     }
                     else {
-                        if (badArg != 0){
+                        if (bindings.includes("if") || bindings.includes("var") || bindings.includes("=") || bindings.includes("lam")){
                             throw "ZHRL: Has Invaild Variable";
                         }
                         //[(AppC (LamC (cast v (Listof Symbol)) (parse body))
                             //(map parse (cast exp (Listof Sexp))))])]
                         else {
-                            return new AppC( new LamC( assertStringArray([expr[2]]), (parse(expr.slice(2, expr.length)))), 
-                            expr.slice(1).map(parse));
+                            console.log(body);
+                            return new AppC( new LamC( assertStringArray(bindings), parse(body)), exprs.map(parse))
                         }
                     }
                     // stub, handle ths later
@@ -335,11 +354,11 @@ export namespace ZHRL {
     }
 
     //Serialize returns string version of ZHRL value
-    export function serialize(input : Sexp) : String {
-        input.toString();
+    export function serialize(input : Value) : string {
+        return input.toString();
     }
 
-    export function topInterp(input : Sexp) : Value {
+    export function topInterp(input : Sexp) : string {
         return serialize(interp(parse(input), globalEnv));
     }
 

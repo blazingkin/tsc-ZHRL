@@ -50,6 +50,11 @@ test('function application with not enough variables should fail', () => {
     expect(() => {source.ZHRL.interp(app, env)}).toThrow("ZHRL: Function called with wrong arity");
 })
 
+test('var should parse to function application', () => {
+    console.log(source.ZHRL.parse(["var", ["a", "=", 3], "a"]));
+    expect(source.ZHRL.parse(["var", ["a", "=", 3], "a"])).toEqual(new source.ZHRL.AppC(new source.ZHRL.LamC(["a"], new source.ZHRL.IdC("a")), [3]))
+})
+
 test('very simple function application should work', () => {
     var prog = [["lam", ["x"], "x"], 30];
     expect(source.ZHRL.topInterp(prog)).toEqual("30");
