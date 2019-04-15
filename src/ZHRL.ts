@@ -320,15 +320,11 @@ export namespace ZHRL {
                         if (bindings.includes("if") || bindings.includes("var") || bindings.includes("=") || bindings.includes("lam")){
                             throw "ZHRL: Has Invaild Variable";
                         }
-                        //[(AppC (LamC (cast v (Listof Symbol)) (parse body))
-                            //(map parse (cast exp (Listof Sexp))))])]
                         else {
                             console.log(body);
                             return new AppC( new LamC( assertStringArray(bindings), parse(body)), exprs.map(parse))
                         }
                     }
-                    // stub, handle ths later
-                    return false;
                 }
             }
             return new AppC(parse(first), expr.slice(1).map(parse));
